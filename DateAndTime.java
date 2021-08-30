@@ -6,8 +6,7 @@ import java.util.Date;
 import java.time.format.DateTimeFormatter;
 
 
-public class Time {
-
+public class DateAndTime{
     private int year = Calendar.getInstance().get(Calendar.YEAR);
     private int month = Calendar.getInstance().get(Calendar.MONTH);
     private int day_of_month = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
@@ -15,7 +14,7 @@ public class Time {
     private int minute;
     private LocalDateTime date_time;
 
-    public Time(int year, int month ,int day_of_month, int hour, int minute) {
+    public DateAndTime(int year, int month ,int day_of_month, int hour, int minute) {
         setYear(year);
         setMonth(month);
         setDay_of_month(month);
