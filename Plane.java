@@ -1,8 +1,4 @@
-
-public class Plane{
-    StringBuilder plane_name;
-    StringBuilder design;
-
+public class Plane {
+    private StringBuilder name;
+    private StringBuilder company;
 }
-
-
