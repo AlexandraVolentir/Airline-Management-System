@@ -12,7 +12,7 @@ public class Address {
     }
 
     public void setCountry(StringBuilder country) {
-        //this.country = country;
+        this.country = country;
     }
 
     public StringBuilder getCity() {

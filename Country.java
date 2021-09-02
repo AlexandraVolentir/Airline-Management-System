@@ -17,7 +17,8 @@ public class Country {
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
-                //countries.add(line);
+                if (line.compareTo("") != 0)
+                    countries.add(line);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -32,6 +33,7 @@ public class Country {
         {
             System.out.println(country);
         }
+        System.out.println("Number of countries: " + countries.size());
     }
 
 }
