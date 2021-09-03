@@ -3,7 +3,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Country {
-    public List<String> countries =new LinkedList<String>();
+    public static List<String> countryList = new LinkedList<String>();
 
     public Country() {
         insertInListTheCountries();
@@ -11,29 +11,25 @@ public class Country {
 
     public void insertInListTheCountries() {
         // buffered reading
-        countries.clear();
+        countryList.clear();
 
         File file = new File("countries");
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
                 if (line.compareTo("") != 0)
-                    countries.add(line);
+                    countryList.add(line);
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void listTheCountries()
-    {
-        for(String country:countries)
-        {
+    public void listTheCountries() {
+        for (String country : countryList) {
             System.out.println(country);
         }
-        System.out.println("Number of countries: " + countries.size());
+        System.out.println("Number of countries: " + countryList.size());
     }
 
 }
