@@ -1,11 +1,11 @@
 public class Main {
-
-    private static void start() {
-        Country c = new Country();
-        c.listTheCountries();
-    }
     public static void main(String[] args) {
-
-        start();
+        CSVReader r;
+        try {
+            r = new CSVReader("countries.csv");
+            Country c = new Country(r, 1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

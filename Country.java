@@ -1,27 +1,12 @@
-import java.io.*;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.TreeSet;
+import java.util.Vector;
 
 public class Country {
-    public static List<String> countryList = new LinkedList<String>();
+    public static TreeSet<String> countryList = new TreeSet<String>();
 
-    public Country() {
-        insertInListTheCountries();
-    }
-
-    public void insertInListTheCountries() {
-        // buffered reading
-        countryList.clear();
-
-        File file = new File("countries");
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                if (line.compareTo("") != 0)
-                    countryList.add(line);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+    public Country(CSVReader r, int where) {
+        for (Vector<String> line : r.data) {
+            countryList.add(line.get(where));
         }
     }
 
