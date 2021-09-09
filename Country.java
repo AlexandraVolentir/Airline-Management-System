@@ -16,5 +16,12 @@ public class Country {
         }
         System.out.println("Number of countries: " + countryList.size());
     }
+    
+    public boolean checkIfCountryInList(String country)
+    {
+        if(countryList.contains(country))
+            return true;
+        return false;
+    }
 
 }
