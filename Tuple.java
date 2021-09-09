@@ -1,9 +1,11 @@
-public class Tuple<X, Y> {
-    public final X x;
-    public final Y y;
-    public Tuple(X x, Y y)
+public class Tuple{
+    public final int row;
+    public final char column;
+    public final boolean booked;
+    public Tuple(int row, char column, boolean booked)
     {
-        this.x = x;
-        this.y = y;
+        this.row = row;
+        this.column = column;
+        this.booked = booked;
     }
 }
