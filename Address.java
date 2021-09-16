@@ -30,12 +30,13 @@ public class Address {
     }
 
     public void setStreet(StringBuilder street) {
+        this.street = new StringBuilder();
         char[] carr = street.toString().toCharArray();
         for (int i = 0; i < carr.length - 1; i++) {
             if (carr[i] == ' ') {
                 carr[i + 1] += 32;
-                this.street.append(carr[i]);
             }
+            this.street.append(carr[i]);
         }
     }
 
@@ -57,5 +58,10 @@ public class Address {
 
     public boolean isValid() {
         return false;
+    }
+
+    public String toString() {
+        return country.toString() + " " + city.toString() + " " + street.toString() + " " + street_number.toString()
+                + " " + apartment.toString();
     }
 }

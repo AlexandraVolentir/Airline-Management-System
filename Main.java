@@ -7,5 +7,7 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Passenger p = new Passenger();
+        p.test();
     }
 }
