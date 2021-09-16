@@ -11,7 +11,7 @@ public class Address {
     }
 
     public void setCountry(StringBuilder country) throws Exception {
-        if (Country.countryList.contains(country.toString()))
+        if (Country.getCountries().contains(country.toString()))
             this.country = country;
         else
             throw new Exception(country.toString() + " not found in the given country list");

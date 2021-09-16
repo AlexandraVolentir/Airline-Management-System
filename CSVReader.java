@@ -5,7 +5,7 @@ import java.util.Vector;
 
 public class CSVReader {
     private File file;
-    public Vector<Vector<String>> data = new Vector<Vector<String>>();
+    private Vector<Vector<String>> data = new Vector<Vector<String>>();
 
     CSVReader(String fileName) throws Exception {
         if (!fileName.contains(".csv")) {
@@ -26,7 +26,7 @@ public class CSVReader {
                 if (line.compareTo("") != 0 && lineCount != 0) {
                     String[] insertMe = line.split(",");
                     Vector<String> lineContent = new Vector<>();
-                    
+
                     for (String str : insertMe) {
                         lineContent.add(str);
                     }
@@ -47,5 +47,9 @@ public class CSVReader {
             }
             System.out.println();
         }
+    }
+
+    public Vector<Vector<String>> getData() {
+        return data;
     }
 }

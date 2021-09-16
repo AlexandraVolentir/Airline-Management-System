@@ -10,47 +10,22 @@ public class Seat {
 
     }
 
-    public void findNextAvailableSeat()
-    {
+    public void findNextAvailableSeat() {
 
     }
 
-    public char atributeColumn(int column)
-    {
-        switch(column) {
-            case 0:
-                return 'A';
-            case 1:
-                return 'B';
-            case 2:
-                return 'C';
-            case 3:
-                return 'D';
-            case 4:
-                return 'E';
-            case 5:
-                return 'F';
-            case 6:
-                return 'G';
-            case 7:
-                return 'H';
-            case 8:
-                return 'I';
-            default:
-                return '-';
-
-        }
+    public char atributeColumn(int column) {
+        if (column < COLUMNS)
+            return (char) (column + 'A');
+        return '-';
     }
 
-    public void bookSeat(int row, int column)
-    {
+    public void bookSeat(int row, int column) {
         if (checkSeatForAvailability(row, column))
-
-        seats[row][column] = new Tuple(row, atributeColumn(column), true);
+            seats[row][column] = new Tuple(row, atributeColumn(column), true);
     }
 
-    public boolean checkSeatForAvailability(int cur_row, int cur_column)
-    {
+    public boolean checkSeatForAvailability(int cur_row, int cur_column) {
         if (seats[cur_row][cur_column].row == 0 && seats[cur_row][cur_column].column == '\u0000')
             return false;
         return true;
