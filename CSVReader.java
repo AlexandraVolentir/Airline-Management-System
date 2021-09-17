@@ -6,14 +6,22 @@ import java.util.Vector;
 public class CSVReader {
     private File file;
     private Vector<Vector<String>> data = new Vector<Vector<String>>();
+    private static CSVReader instance = null;
 
-    CSVReader(String fileName) throws Exception {
+    private CSVReader(String fileName) throws Exception {
         if (!fileName.contains(".csv")) {
             throw new Exception(fileName.toString() + " is not a .csv");
         }
         file = new File(fileName);
 
         readFile();
+    }
+
+    public static CSVReader getInstance() throws Exception {
+        if (instance == null)
+            instance = new CSVReader("countries.csv");
+
+        return instance;
     }
 
     private void readFile() {

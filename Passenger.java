@@ -3,7 +3,16 @@ import java.time.LocalDate;
 public class Passenger extends Person {
     private Seat preferred_seat;
     private DateAndTime preferred_time;
-    private String destination;
+    private Address destination;
+
+    public void setDestination(StringBuilder country, StringBuilder city) {
+        try {
+            destination.setCountry(country);
+            destination.setCity(city);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public void test() {
         try {

@@ -1,3 +1,5 @@
+import java.util.Vector;
+
 public class Address {
 
     private StringBuilder country;
@@ -21,8 +23,14 @@ public class Address {
         return city;
     }
 
-    public void setCity(StringBuilder city) {
-        this.city = new StringBuilder(city.substring(0, 1).toUpperCase() + city.substring(1));
+    public void setCity(StringBuilder city) throws Exception {
+        for (Vector<String> line : CSVReader.getInstance().getData()) {
+            if (line.contains(city.toString())) {
+                this.city = city;
+                return;
+            }
+        }
+        throw new Exception(city.toString() + " not found in the given city list");
     }
 
     public StringBuilder getStreet() {
