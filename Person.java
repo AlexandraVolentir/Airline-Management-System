@@ -1,7 +1,8 @@
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
-public class Person {
+abstract class Person {
     private String firstName;
     private String lastName;
     private char sex;
@@ -43,7 +44,6 @@ public class Person {
     }
 
     protected void setSSN(int newSSN) {
-        // TODO: add some verification
         SSN = newSSN;
     }
 
@@ -68,5 +68,11 @@ public class Person {
 
     protected Address getAddress() {
         return address;
+    }
+
+    public String toString() {
+        return firstName + " " + lastName + "\n" + sex + " " + SSN + " "
+                + (Objects.isNull(DOB) ? "null" : DOB.toString()) + "\n"
+                + (Objects.isNull(address) ? "null" : address.toString());
     }
 }

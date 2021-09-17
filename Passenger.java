@@ -3,7 +3,7 @@ import java.time.LocalDate;
 public class Passenger extends Person {
     private Seat preferred_seat;
     private DateAndTime preferred_time;
-    private Address destination;
+    private Address destination = new Address();
 
     public void setDestination(StringBuilder country, StringBuilder city) {
         try {
@@ -14,27 +14,11 @@ public class Passenger extends Person {
         }
     }
 
-    public void test() {
-        try {
-            setFirstName("Jonathan");
-            setLastName("Smith");
-            setSex('m');
-            setSSN(153910810);
+    public Address getDestination() {
+        return destination;
+    }
 
-            Address adr = new Address();
-            adr.setApartment(new StringBuilder("Ap23"));
-            adr.setCity(new StringBuilder("Iasi"));
-            adr.setCountry(new StringBuilder("Romania"));
-            adr.setStreet(new StringBuilder("Street"));
-            adr.setStreet_number(new StringBuilder("32"));
-
-            setAddress(adr);
-            setDOB(LocalDate.now());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println(getFirstName() + " " + getLastName());
-        System.out.println(getSex() + " " + getSSN() + " " + getDOB().toString());
-        System.out.println(getAddress().toString());
+    public String toString() {
+        return super.toString() + "\n" + preferred_time.getYear() + " " + preferred_time.getMonth() + " " + preferred_time.getDay_of_month();
     }
 }

@@ -1,3 +1,3 @@
-public class Crewmate implements Person{
-    private boolean isPilot;
+public class Crewmate extends Person {
+    public boolean isPilot;
 }

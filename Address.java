@@ -69,7 +69,6 @@ public class Address {
     }
 
     public String toString() {
-        return country.toString() + " " + city.toString() + " " + street.toString() + " " + street_number.toString()
-                + " " + apartment.toString();
+        return country + " " + city + " " + street + " " + street_number + " " + apartment;
     }
 }
