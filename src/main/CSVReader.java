@@ -1,3 +1,4 @@
+package src.main;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -19,7 +20,7 @@ public class CSVReader {
 
     public static CSVReader getInstance() throws Exception {
         if (instance == null)
-            instance = new CSVReader("countries.csv");
+            instance = new CSVReader("src\\resources\\csv\\countries.csv");
 
         return instance;
     }
