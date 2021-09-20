@@ -1,3 +1,15 @@
 public class Crewmate extends Person {
     public boolean isPilot;
+    public boolean isPilot() {
+        return isPilot;
+    }
+
+    public void setPilot(boolean pilot) {
+        isPilot = pilot;
+    }
+
+    @Override
+    public void test() {
+
+    }
 }
