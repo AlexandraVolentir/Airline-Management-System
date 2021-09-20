@@ -1,5 +1,6 @@
 package src.main;
-import java.time.LocalDate;
+
+import java.util.Objects;
 
 public class Passenger extends Person {
     private Seat preferred_seat;
@@ -20,6 +21,10 @@ public class Passenger extends Person {
     }
 
     public String toString() {
-        return super.toString() + "\n" + preferred_time.getYear() + " " + preferred_time.getMonth() + " " + preferred_time.getDay_of_month();
+        return super.toString() + "\n"
+                + (Objects.isNull(preferred_time) ? "null"
+                        : preferred_time.getYear() + " " + preferred_time.getMonth() + " "
+                                + preferred_time.getDay_of_month())
+                + " " + (Objects.isNull(preferred_seat) ? "null" : "seat ok");
     }
 }
