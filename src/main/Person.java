@@ -1,4 +1,5 @@
 package src.main;
+
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.regex.Pattern;
@@ -10,6 +11,11 @@ abstract class Person {
     private int SSN;
     private LocalDate DOB;
     private Address address;
+    protected CSVReader reader;
+
+    public Person(CSVReader reader) {
+        this.reader = reader;
+    }
 
     public void setFirstName(String newFirstName) throws Exception {
         if (!Pattern.matches("^[A-Z][a-z-]{3,30}$", newFirstName)) {

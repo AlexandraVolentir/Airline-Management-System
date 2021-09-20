@@ -1,11 +1,17 @@
 package src.main;
 
+import java.util.ArrayDeque;
 import java.util.Objects;
 
 public class Passenger extends Person {
     private Seat preferred_seat;
     private DateAndTime preferred_time;
-    private Address destination = new Address();
+    private Address destination;
+
+    public Passenger(CSVReader reader) {
+        super(reader);
+        destination = new Address(reader);
+    }
 
     public void setDestination(StringBuilder country, StringBuilder city) {
         try {

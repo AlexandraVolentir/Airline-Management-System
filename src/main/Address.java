@@ -1,13 +1,20 @@
 package src.main;
 import java.util.Vector;
-
 public class Address {
 
+    static final int COUNTRY_POSITION = 1;
     private StringBuilder country;
     private StringBuilder city;
     private StringBuilder street;
     private StringBuilder street_number;
     private StringBuilder apartment;
+    private CSVReader reader;
+    private Country c;
+
+    public Address(CSVReader r) {
+        reader = r;
+        c = new Country(reader, COUNTRY_POSITION);
+    }
 
     public StringBuilder getCountry() {
         return country;
@@ -25,7 +32,7 @@ public class Address {
     }
 
     public void setCity(StringBuilder city) throws Exception {
-        for (Vector<String> line : CSVReader.getInstance().getData()) {
+        for (Vector<String> line : reader.getData()) {
             if (line.contains(city.toString())) {
                 this.city = city;
                 return;
