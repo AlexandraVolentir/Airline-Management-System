@@ -82,4 +82,6 @@ abstract class Person {
                 + (Objects.isNull(DOB) ? "null" : DOB.toString()) + "\n"
                 + (Objects.isNull(address) ? "null" : address.toString());
     }
+
+    public abstract void test();
 }

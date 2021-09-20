@@ -1,6 +1,5 @@
 package src.main;
 
-import java.util.ArrayDeque;
 import java.util.Objects;
 
 public class Passenger extends Person {
@@ -32,5 +31,8 @@ public class Passenger extends Person {
                         : preferred_time.getYear() + " " + preferred_time.getMonth() + " "
                                 + preferred_time.getDay_of_month())
                 + " " + (Objects.isNull(preferred_seat) ? "null" : "seat ok");
+    }
+
+    public void test() {
     }
 }
