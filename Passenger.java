@@ -21,4 +21,7 @@ public class Passenger extends Person {
     public String toString() {
         return super.toString() + "\n" + preferred_time.getYear() + " " + preferred_time.getMonth() + " " + preferred_time.getDay_of_month();
     }
+
+    public void test(){
+    }
 }
