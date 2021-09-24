@@ -1,11 +1,17 @@
 package src.main;
+
 public class Plane {
 
     private StringBuilder name;
     private StringBuilder company;
 
+    public Plane(StringBuilder name, StringBuilder company) {
+        setName(name);
+        setCompany(company);
+    }
+
     public void checkTheNameForValidity(StringBuilder name) throws Exception {
-        if(name.length() > 20) {
+        if (name.length() > 20) {
             throw new Exception("Your input is invalid. Try again.");
         }
     }
@@ -14,9 +20,9 @@ public class Plane {
         return name;
     }
 
-    public void setName(StringBuilder name)  {
+    public void setName(StringBuilder name) {
 
-        try{
+        try {
             checkTheNameForValidity(name);
         } catch (Exception e) {
             e.printStackTrace();
@@ -29,7 +35,7 @@ public class Plane {
     }
 
     public void setCompany(StringBuilder company) {
-        try{
+        try {
             checkTheNameForValidity(company);
         } catch (Exception e) {
             e.printStackTrace();

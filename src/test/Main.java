@@ -17,5 +17,11 @@ public class Main {
 
         System.out.println(p.getDestination().getCity() + ", " + p.getDestination().getCountry());
         System.out.println(p.toString());
+
+        Ticket t = new Ticket();
+        t.setWho(p);
+
+        Flight f = new Flight(new DateAndTime(2021, 12, 3, 7, 4), new DateAndTime(2021, 12, 3, 10, 30), new Plane(new StringBuilder("Plane name"), new StringBuilder("Plane company")));
+        f.addTicket(t);
     }
 }
