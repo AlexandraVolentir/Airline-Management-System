@@ -1,5 +1,7 @@
 package src.main;
+
 import java.util.Vector;
+
 public class Address {
 
     static final int COUNTRY_POSITION = 1;
@@ -32,12 +34,15 @@ public class Address {
     }
 
     public void setCity(StringBuilder city) throws Exception {
-        for (Vector<String> line : reader.getData()) {
-            if (line.contains(city.toString())) {
-                this.city = city;
-                return;
+        for (String[] line : reader.getData()) {
+            for (String str : line) {
+                if (str == city.toString()) {
+                    this.city = city;
+                    return;
+                }
             }
         }
+
         throw new Exception(city.toString() + " not found in the given city list");
     }
 
