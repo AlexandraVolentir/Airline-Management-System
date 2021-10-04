@@ -18,7 +18,7 @@ abstract class Person {
     }
 
     public void setFirstName(String newFirstName) throws Exception {
-        if (!Pattern.matches("^([A-Z]+[a-z]{1,9}([/-]?[A-Z][a-z]{1,9}){0,4})$", newFirstName)) {
+        if (!Pattern.matches("^([A-Z][a-z]{1,9}([/-]?[A-Z][a-z]{1,9}){0,3})$", newFirstName)) {
             throw new Exception("First name(\"" + newFirstName + "\") is invalid");
         }
         firstName = newFirstName;
@@ -29,7 +29,7 @@ abstract class Person {
     }
 
     public void setLastName(String newLastName) throws Exception {
-        if (!Pattern.matches("^([A-Z]+[a-z]{1,9}([/-]?[A-Z][a-z]{1,9}){0,4})$", newLastName)) {
+        if (!Pattern.matches("^([A-Z][a-z]{1,9}([/-]?[A-Z][a-z]{1,9}){0,3})$", newLastName)) {
             throw new Exception("Last name(\"" + newLastName + "\") is invalid");
         }
         lastName = newLastName;
