@@ -10,12 +10,17 @@ public class CSVReader {
     private Vector<String[]> data = new Vector<>();
 
     public CSVReader(String fileName) throws Exception {
-        if (!fileName.contains(".csv")) {
+        final String cwd = "src\\resources\\csv\\";
+
+        if (!fileName.endsWith(".csv")) {
             throw new Exception(fileName + " is not a .csv");
         }
-        file = new File(fileName);
+        file = new File(cwd + fileName);
         if (!file.exists() || file.isDirectory()) {
             throw new Exception(fileName + " does not exist or is a directory");
+        }
+        if (!file.canRead()) {
+            throw new Exception("Cannot read file " + fileName);
         }
 
         readFile();

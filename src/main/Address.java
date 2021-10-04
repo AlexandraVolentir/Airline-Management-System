@@ -1,7 +1,5 @@
 package src.main;
 
-import java.util.Vector;
-
 public class Address {
 
     static final int COUNTRY_POSITION = 1;
