@@ -4,7 +4,7 @@ import src.main.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        CSVReader r = new CSVReader("src\\resources\\csv\\countries.csv");
+        CSVReader r = new CSVReader("src\\countries.csv");
         Passenger p = new Passenger(r);
 
         p.setFirstName("Robert");
@@ -21,7 +21,8 @@ public class Main {
         Ticket t = new Ticket();
         t.setWho(p);
 
-        Flight f = new Flight(new DateAndTime(2021, 12, 3, 7, 4), new DateAndTime(2021, 12, 3, 10, 30), new Plane(new StringBuilder("Plane name"), new StringBuilder("Plane company")));
+        Flight f = new Flight(new DateAndTime(2021, 12, 3, 7, 4), new DateAndTime(2021, 12, 3, 10, 30), new Plane(new StringBuilder("Plane name"), new StringBuilder("Plane company"), 32,9));
         f.addTicket(t);
+
     }
 }
