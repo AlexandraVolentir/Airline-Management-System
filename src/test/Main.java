@@ -22,6 +22,7 @@ public class Main {
             p.setLastName("Robertson");
             p.setAddress(new Address(r));
 
+
             p.setDestination(new StringBuilder("United Kingdom"), new StringBuilder("York"));
             p.setSSN(12309832);
             p.setSex('m');
