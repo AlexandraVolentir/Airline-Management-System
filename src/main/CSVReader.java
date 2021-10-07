@@ -1,32 +1,39 @@
 package src.main;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
+import java.util.Arrays;
 import java.util.Vector;
 
 public class CSVReader {
     private File file;
-    private Vector<String[]> data = new Vector<>();
+    private Vector<String[]> data = null;
+    private boolean changed = false;
+    final private String cwd = "src\\resources\\csv\\";
 
     public CSVReader(String fileName) throws Exception {
-        final String cwd = "src\\resources\\csv\\";
-
-        if (!fileName.endsWith(".csv")) {
-            throw new Exception(fileName + " is not a .csv");
+        if (fileName.contains(".csv")) {
+            file = new File(cwd + fileName);
+        } else {
+            file = new File(cwd + fileName + ".csv");
         }
-        file = new File(cwd + fileName);
+
+        if (!file.canRead() || !file.canWrite()) {
+            throw new Exception("Cannot read/write file " + fileName);
+        }
         if (!file.exists() || file.isDirectory()) {
             throw new Exception(fileName + " does not exist or is a directory");
-        }
-        if (!file.canRead()) {
-            throw new Exception("Cannot read file " + fileName);
         }
 
         readFile();
     }
 
-    private void readFile() {
+    public void readFile() {
+        if (data == null || changed) {
+            data = new Vector<String[]>();
+        } else if (!changed) {
+            return;
+        }
+
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader(file));
@@ -43,7 +50,7 @@ public class CSVReader {
                     data.add(lineContent);
                 }
             } catch (Exception e) {
-                if (data.size() < 2) // line will eventually be null because of the do-while
+                if (data == null) // line will eventually be null because of the do-while
                     e.printStackTrace();
             }
         } while (line != null);
@@ -52,6 +59,96 @@ public class CSVReader {
             br.close();
         } catch (Exception e) {
         }
+
+        changed = false;
+    }
+
+    public void append(String line) {
+        BufferedWriter wr = null;
+        try {
+            wr = new BufferedWriter(new FileWriter(file, true));
+            wr.write(line);
+            wr.append('\n');
+
+            changed = true;
+            wr.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void append(String[] lines) {
+        BufferedWriter wr = null;
+        try {
+            wr = new BufferedWriter(new FileWriter(file, true));
+            for (String line : lines) {
+                wr.write(line);
+                wr.append('\n');
+            }
+
+            changed = true;
+            wr.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void overwrite(String[] lines) {
+        BufferedWriter wr = null;
+        try {
+            wr = new BufferedWriter(new FileWriter(file));
+            for (String line : lines) {
+                wr.write(line + '\n');
+            }
+
+            changed = true;
+            wr.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void removeAt(int index) {
+        if (changed) {
+            readFile();
+        }
+        data.remove(index);
+
+        String[] out = new String[data.size()];
+        int j = 0;
+        for (String[] line : data) {
+            String tmp = new String();
+
+            for (int i = 0; i < line.length - 1; i++) {
+                tmp += line[i] + ",";
+            }
+            tmp += line[line.length - 1];
+
+            out[j++] = tmp;
+        }
+
+        overwrite(out);
+        changed = true;
+    }
+
+    public int findFirstLine(String line) {
+        if (changed) {
+            readFile();
+        }
+        for (int i = 0; i < data.size(); i++) {
+            if (Arrays.compare(data.elementAt(i), line.split(",")) == 0) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public String[] getLine(int index) {
+        if (changed) {
+            readFile();
+        }
+
+        return data.elementAt(index);
     }
 
     public void printAll() {
@@ -61,6 +158,11 @@ public class CSVReader {
             }
             System.out.println();
         }
+    }
+
+    public void clear() {
+        overwrite(new String[0]);
+        changed = true;
     }
 
     public Vector<String[]> getData() {
