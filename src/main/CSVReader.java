@@ -4,6 +4,15 @@ import java.io.*;
 import java.util.Arrays;
 import java.util.Vector;
 
+/**
+ * Class that allows read/write operations on csv files.
+ * <p>
+ * The inner {@link #data} is cached, so that there are no unnecessary or
+ * accidental read operations, and is only changed upon calling one of the
+ * following methods: {@link #append}, {@link #overwrite}, {@link #removeAt}, or
+ * {@link #clear}.
+ * </p>
+ */
 public class CSVReader {
     private File file;
     private Vector<String[]> data = null;
@@ -27,6 +36,13 @@ public class CSVReader {
         readFile();
     }
 
+    /**
+     * Only reads the current file if:
+     * <ul>
+     * <li>it's the first time it's being read</li>
+     * <li>the file has been modified</li>
+     * </ul>
+     */
     public void readFile() {
         if (data == null || changed) {
             data = new Vector<String[]>();
@@ -63,6 +79,12 @@ public class CSVReader {
         changed = false;
     }
 
+    /**
+     * Inserts a new line at the end of the file, without checking if it has a csv
+     * format
+     * 
+     * @param line Line to be inserted
+     */
     public void append(String line) {
         BufferedWriter wr = null;
         try {
@@ -77,6 +99,12 @@ public class CSVReader {
         }
     }
 
+    /**
+     * Inserts multiple lines at the end of the file, best paired with the
+     * {@link #getData} method called on another instance
+     * 
+     * @param lines Lines to be inserted
+     */
     public void append(String[] lines) {
         BufferedWriter wr = null;
         try {
