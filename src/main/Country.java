@@ -1,13 +1,13 @@
 package src.main;
+
 import java.util.TreeSet;
-import java.util.Vector;
 
 public class Country {
     private static TreeSet<String> countryList = new TreeSet<String>();
 
     public Country(CSVReader r, int where) {
-        for (Vector<String> line : r.getData()) {
-            countryList.add(line.get(where));
+        for (String[] line : r.getData()) {
+            countryList.add(line[where]);
         }
     }
 
