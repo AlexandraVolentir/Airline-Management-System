@@ -40,7 +40,7 @@ public class Main {
             t.setWho(p);
 
             Flight f = new Flight(new DateAndTime(2021, 12, 3, 7, 4), new DateAndTime(2021, 12, 3, 10, 30),
-                    new Plane(new StringBuilder("Plane name"), new StringBuilder("Plane company")));
+                    new Plane(new StringBuilder("Plane name"), new StringBuilder("Plane company"), 2, 2));
             f.addTicket(t);
         }
 

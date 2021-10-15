@@ -121,6 +121,30 @@ public class CSVReader {
         }
     }
 
+    public void modify(int line, int index, String entry) {
+        entry = entry.replace(",", "_");
+        data.elementAt(line)[index] = entry;
+
+        overwrite(convertToStringArray(data));
+        changed = true;
+    }
+
+    private String[] convertToStringArray(Vector<String[]> vec) {
+        String[] out = new String[vec.size()];
+        int j = 0;
+        for (String[] line : vec) {
+            String tmp = new String();
+
+            for (int i = 0; i < line.length - 1; i++) {
+                tmp += line[i] + ",";
+            }
+            tmp += line[line.length - 1];
+
+            out[j++] = tmp;
+        }
+        return out;
+    }
+
     private void overwrite(String[] lines) {
         BufferedWriter wr = null;
         try {
@@ -136,26 +160,18 @@ public class CSVReader {
         }
     }
 
+    /**
+     * Removes a line in the .csv file and updates it
+     * 
+     * @param index Zero-indexed line to be removed
+     */
     public void removeAt(int index) {
         if (changed) {
             readFile();
         }
         data.remove(index);
 
-        String[] out = new String[data.size()];
-        int j = 0;
-        for (String[] line : data) {
-            String tmp = new String();
-
-            for (int i = 0; i < line.length - 1; i++) {
-                tmp += line[i] + ",";
-            }
-            tmp += line[line.length - 1];
-
-            out[j++] = tmp;
-        }
-
-        overwrite(out);
+        overwrite(convertToStringArray(this.data));
         changed = true;
     }
 
@@ -169,6 +185,26 @@ public class CSVReader {
             }
         }
         return -1;
+    }
+
+    /**
+     * Finds all occurrences of given string in the .csv file
+     * 
+     * @param entry String to be found
+     * @return Vector containing all occurences
+     */
+    public Vector<Integer> findAllLines(String entry) {
+        Vector<Integer> out = new Vector<>();
+
+        for (int i = 0; i < data.size(); i++) {
+            for (String str : data.elementAt(i)) {
+                if (str.compareTo(entry) == 0) {
+                    out.add(i);
+                }
+            }
+        }
+
+        return out;
     }
 
     public String[] getLine(int index) {
