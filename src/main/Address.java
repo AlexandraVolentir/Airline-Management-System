@@ -13,7 +13,7 @@ public class Address {
 
     public Address(CSVReader r) {
         reader = r;
-        c = new Country(reader, COUNTRY_POSITION);
+        c = new Country(r, COUNTRY_POSITION);
     }
 
     public StringBuilder getCountry() {
@@ -21,10 +21,11 @@ public class Address {
     }
 
     public void setCountry(StringBuilder country) throws Exception {
-        if (Country.getCountries().contains(country.toString()))
+        if (c.getCountries().contains(country.toString())) {
             this.country = country;
-        else
+        } else {
             throw new Exception(country.toString() + " not found in the given country list");
+        }
     }
 
     public StringBuilder getCity() {
@@ -34,7 +35,7 @@ public class Address {
     public void setCity(StringBuilder city) throws Exception {
         for (String[] line : reader.getData()) {
             for (String str : line) {
-                if (str == city.toString()) {
+                if (str.compareTo(city.toString()) == 0) {
                     this.city = city;
                     return;
                 }

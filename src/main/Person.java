@@ -11,10 +11,8 @@ abstract class Person {
     private int SSN;
     private LocalDate DOB;
     private Address address;
-    protected CSVReader reader;
 
-    public Person(CSVReader reader) {
-        this.reader = reader;
+    public Person() {
     }
 
     public void setFirstName(String newFirstName) throws Exception {

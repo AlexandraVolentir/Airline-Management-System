@@ -22,6 +22,12 @@ public class Main {
             p.setLastName("Robertson");
             p.setAddress(new Address(r));
 
+            Address adr = new Address(r);
+            adr.setApartment(new StringBuilder("Ap 23"));
+            adr.setCity(new StringBuilder("York"));
+            adr.setCountry(new StringBuilder("Romania"));
+            adr.setStreet(new StringBuilder("19 Rose St"));
+            p.setAddress(adr);
 
             p.setDestination(new StringBuilder("United Kingdom"), new StringBuilder("York"));
             p.setSSN(12309832);

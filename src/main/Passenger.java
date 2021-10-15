@@ -8,7 +8,6 @@ public class Passenger extends Person {
     private Address destination;
 
     public Passenger(CSVReader reader) {
-        super(reader);
         destination = new Address(reader);
     }
 

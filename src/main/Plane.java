@@ -6,15 +6,15 @@ public class Plane {
     private StringBuilder company;
     int rows;
     int columns;
-    private final Seat[][] seats = new Seat[rows][columns]; // 9 for ABC DEF GHI
+    private Seat[][] seats;
     Seat lastAvlSeat;
     int totalSeats;
     int bookedSeats = 0;
-    
 
     public Plane(StringBuilder name, StringBuilder company, int rows, int columns) {
         setPlaneName(name); setCompany(company);
-        setRows(rows); setColumns(columns);
+        setRows(rows); setColumns(columns); 
+        seats = new Seat[rows][columns];
         initializeSeats();
     }
 
@@ -39,7 +39,7 @@ public class Plane {
     }
 
     public void settotalSeats() {
-        this.totalSeats = getColumns()*getRows();
+        this.totalSeats = getColumns() * getRows();
     }
 
     public void checkPlaneNameForValidity(StringBuilder name) throws Exception {
@@ -75,14 +75,13 @@ public class Plane {
         this.company = company;
     }
 
-    public void initializeSeats(){
-
+    public void initializeSeats() {
         settotalSeats();
-        for(int i = 0; i< rows; i++)
-            for(int j = 0; j< columns; j++){
+        for (int i = 0; i < rows; i++)
+            for (int j = 0; j < columns; j++) {
                 seats[i][j] = new Seat(i, attributeColumn(j), false);
             }
-        lastAvlSeat = seats[0]['A'];
+        // lastAvlSeat = seats[0]['A'];
     }
 
     public char attributeColumn(int column) {
@@ -91,20 +90,18 @@ public class Plane {
         return '-';
     }
 
-
     public boolean bookSeat() {
         if (bookedSeats != totalSeats) {
             int row = lastAvlSeat.row;
             int column = lastAvlSeat.column;
-            try{ 
+            try {
                 seats[row][column] = new Seat(row, attributeColumn(column), true);
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            if(lastAvlSeat.column==columns-1 && bookedSeats!=totalSeats)
-            {
-                lastAvlSeat.column='A';
+            if (lastAvlSeat.column == columns - 1 && bookedSeats != totalSeats) {
+                lastAvlSeat.column = 'A';
                 lastAvlSeat.row++;
             }
             bookedSeats++;
@@ -112,11 +109,10 @@ public class Plane {
         }
         return false;
     }
-    
-    public boolean bookSeat(int row, int column)
-    {
+
+    public boolean bookSeat(int row, int column) {
         if (bookedSeats != totalSeats) {
-            try{
+            try {
                 seats[row][column] = new Seat(row, attributeColumn(column), true);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -126,7 +122,7 @@ public class Plane {
         }
         return false;
     }
-    
+
     public void setLastAvlSeat(Seat lastAvlSeat) {
         this.lastAvlSeat = lastAvlSeat;
     }

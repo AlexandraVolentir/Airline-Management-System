@@ -24,7 +24,7 @@ public class Country {
         return false;
     }
 
-    public static TreeSet<String> getCountries() {
+    public TreeSet<String> getCountries() {
         return countryList;
     }
 }

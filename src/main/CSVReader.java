@@ -61,11 +61,11 @@ public class CSVReader {
         do {
             try {
                 line = br.readLine();
-                if (line.compareTo("") != 0) {
+                if (line != null && line.compareTo("") != 0) {
                     String[] lineContent = line.split(",");
                     data.add(lineContent);
                 }
-            } catch (Exception e) {
+            } catch (IOException e) {
                 if (data == null) // line will eventually be null because of the do-while
                     e.printStackTrace();
             }
