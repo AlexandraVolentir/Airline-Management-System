@@ -91,6 +91,7 @@ public class Plane {
     }
 
     public boolean bookSeat() {
+        // to be updated
         if (bookedSeats != totalSeats) {
             int row = lastAvlSeat.row;
             int column = lastAvlSeat.column;
@@ -111,6 +112,7 @@ public class Plane {
     }
 
     public boolean bookSeat(int row, int column) {
+        // to be updated
         if (bookedSeats != totalSeats) {
             try {
                 seats[row][column] = new Seat(row, attributeColumn(column), true);
